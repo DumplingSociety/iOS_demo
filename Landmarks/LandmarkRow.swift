@@ -17,6 +17,12 @@ struct LandmarkRow: View {
             Text(landmark.name) // text
             
             Spacer()
+            
+            //After the spacer, add a star image inside an if statement to test whether the current landmark is a favorite.
+            if landmark.isFavorite{
+                Image(systemName: "star.fill")
+                    .foregroundColor(.yellow)
+            }
         }
     }
 }
