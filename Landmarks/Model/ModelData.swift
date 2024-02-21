@@ -6,6 +6,13 @@
 //
 
 import Foundation
+//Use observation for storage
+//To prepare for the user to control which particular landmarks are favorites, you’ll first store the landmark data using the Observable() macro
+
+@Observable
+class ModelData {
+    var landmarks: [Landmark] = load("landmarkData.json") //move the landmarks array into the model
+}
 
 var landmarks: [Landmark] = load("landmarkData.json") // create an arry of landmarks that ini from landmarkData.json
 

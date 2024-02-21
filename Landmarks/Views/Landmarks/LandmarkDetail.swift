@@ -8,10 +8,20 @@
 import SwiftUI
 
 struct LandmarkDetail: View {
+    
+    @Environment(ModelData.self) var modelData
+    
     var landmark: Landmark
+    // compute the index of the input landmark by comparing it with the model data.
+    var landmarkIndex: Int {
+           modelData.landmarks.firstIndex(where: { $0.id == landmark.id })!
+       }
+    
     
     var body: some View {
-    //    VStack{
+        //Inside the body property, add the model data using a Bindable wrapper. Embed the landmark’s name in an HStack with a new FavoriteButton; provide a binding to the isFavorite property with the dollar sign ($).
+        @Bindable var modelData = modelData
+        
         ScrollView{
             MapView(coordinate: landmark.locationCoordinate) // pass the required data to your custom types
                 .frame(height: 300)
@@ -21,8 +31,13 @@ struct LandmarkDetail: View {
                 .padding(.bottom, -130)
             
             VStack(alignment:.leading) {
-                Text(landmark.name) // tital
-                    .font(.title)
+                HStack{
+                    Text(landmark.name)
+                        .font(.title)
+                    FavoriteButton(isSet: $modelData.landmarks[landmarkIndex].isFavorite)
+                }
+//                Text(landmark.name) // tital
+//                    .font(.title)
                 
                 HStack{
                     Text(landmark.park)
