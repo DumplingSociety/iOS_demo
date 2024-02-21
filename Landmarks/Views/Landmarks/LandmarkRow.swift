@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LandmarkRow: View {
     var landmark: Landmark
+    
     var body: some View {
         HStack {
             landmark.image // image
@@ -36,7 +37,10 @@ struct LandmarkRow: View {
 //}
 
 #Preview {
-    Group{
+    //Update the LandmarkRow preview to work with the ModelData object.
+    let landmarks = ModelData().landmarks
+    
+    return Group{
     LandmarkRow(landmark: landmarks[0])
     LandmarkRow(landmark: landmarks[1])
     }

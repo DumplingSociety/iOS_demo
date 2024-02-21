@@ -8,13 +8,16 @@
 import SwiftUI
 
 struct LandmarkList: View {
+    //In LandmarkList, add an @Environment property wrapper to the view, and an environment(_:) modifier to the preview.
+    @Environment(ModelData.self) var modelData
     // add a filter
     // State is a value, or a set of values, that can change over time, and that affects a view’s behavior, content, or layout. You use a property with the @State attribute to add state to a view.
-    @State private var showFavoritesOnly = true
+    @State private var showFavoritesOnly = false
     
     // Compute a filtered version of the landmarks list by checking the showFavoritesOnly property and each landmark.isFavorite value.
     var filterdLandmarks: [Landmark] {
-        landmarks.filter { landmark in
+        modelData.landmarks.filter { landmark in // use modelData as the data when filtering landmarsk
+    //    landmarks.filter { landmark in
             (!showFavoritesOnly || landmark.isFavorite)
         }
     }
